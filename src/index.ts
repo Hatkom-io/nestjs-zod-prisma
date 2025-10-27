@@ -7,7 +7,6 @@ import {
   generateBarrelFile,
   generateEnumsFile,
 } from './generator'
-import _ from 'lodash'
 
 type DeepMutable<T> =
   T extends (...a: any) => any ? T
