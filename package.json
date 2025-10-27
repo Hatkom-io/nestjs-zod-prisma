@@ -40,6 +40,9 @@
 	"jest": {
 		"testEnvironment": "node"
 	},
+	"publishConfig": {
+    "access": "public"
+  },
 	"dependencies": {
 		"@prisma/generator-helper": "^6.18.0",
 		"parenthesis": "^3.1.8",
