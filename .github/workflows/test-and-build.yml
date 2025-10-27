@@ -2,9 +2,9 @@ name: Test and Build
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
   pull_request:
-    branches: ['main', 'release/alpha', 'release/beta', 'release/next']
+    branches: ["main", "release/alpha", "release/beta", "release/next"]
 
 jobs:
   test-and-build:
@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 20
           registry-url: https://registry.npmjs.org/
 
       - name: Test and build
