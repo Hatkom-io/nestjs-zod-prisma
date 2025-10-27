@@ -211,7 +211,7 @@ export const generateRelatedSchemaForModel = (
     declarations: [
       {
         name: relatedModelName(model.name),
-        type: `z.ZodSchema<Complete${model.name}>`,
+        type: `z.ZodType<Complete${model.name}>`,
         initializer(writer) {
           writer
             .write(`z.lazy(() => ${modelName(model.name)}.extend(`)

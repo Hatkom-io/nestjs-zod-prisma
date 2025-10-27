@@ -135,7 +135,7 @@ export interface CompletePost extends z.infer<typeof _postSchema> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const postSchema: z.ZodSchema<CompletePost> = z.lazy(() => _postSchema.extend({
+export const postSchema: z.ZodType<CompletePost> = z.lazy(() => _postSchema.extend({
   author: userSchema,
 }))
 "
@@ -164,7 +164,7 @@ export interface CompleteUser extends z.infer<typeof _userSchema> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const userSchema: z.ZodSchema<CompleteUser> = z.lazy(() => _userSchema.extend({
+export const userSchema: z.ZodType<CompleteUser> = z.lazy(() => _userSchema.extend({
   posts: postSchema.array(),
 }))
 "
@@ -240,7 +240,7 @@ export const DocumentModel = z.object({
   filename: z.string(),
   author: z.string(),
   contents: z.string(),
-  status: z.nativeEnum(Status),
+  status: z.enum(Status),
   created: z.date(),
   updated: z.date(),
 })
@@ -276,7 +276,7 @@ export interface CompletePresentation extends z.infer<typeof PresentationModel> 
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedPresentationModel: z.ZodSchema<CompletePresentation> = z.lazy(() => PresentationModel.extend({
+export const RelatedPresentationModel: z.ZodType<CompletePresentation> = z.lazy(() => PresentationModel.extend({
   spreadsheets: RelatedSpreadsheetModel.array(),
 }))
 "
@@ -308,7 +308,7 @@ export interface CompleteSpreadsheet extends z.infer<typeof SpreadsheetModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedSpreadsheetModel: z.ZodSchema<CompleteSpreadsheet> = z.lazy(() => SpreadsheetModel.extend({
+export const RelatedSpreadsheetModel: z.ZodType<CompleteSpreadsheet> = z.lazy(() => SpreadsheetModel.extend({
   presentations: RelatedPresentationModel.array(),
 }))
 "
@@ -342,7 +342,7 @@ export interface CompletePost extends z.infer<typeof PostModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedPostModel: z.ZodSchema<CompletePost> = z.lazy(() => PostModel.extend({
+export const RelatedPostModel: z.ZodType<CompletePost> = z.lazy(() => PostModel.extend({
   author: RelatedUserModel,
 }))
 "
@@ -370,7 +370,7 @@ export interface CompleteUser extends z.infer<typeof UserModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedUserModel: z.ZodSchema<CompleteUser> = z.lazy(() => UserModel.extend({
+export const RelatedUserModel: z.ZodType<CompleteUser> = z.lazy(() => UserModel.extend({
   posts: RelatedPostModel.array(),
 }))
 "
@@ -404,7 +404,7 @@ export interface CompletePost extends z.infer<typeof PostModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedPostModel: z.ZodSchema<CompletePost> = z.lazy(() => PostModel.extend({
+export const RelatedPostModel: z.ZodType<CompletePost> = z.lazy(() => PostModel.extend({
   author: RelatedUserModel.nullish(),
 }))
 "
@@ -432,7 +432,7 @@ export interface CompleteUser extends z.infer<typeof UserModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedUserModel: z.ZodSchema<CompleteUser> = z.lazy(() => UserModel.extend({
+export const RelatedUserModel: z.ZodType<CompleteUser> = z.lazy(() => UserModel.extend({
   posts: RelatedPostModel.nullish(),
 }))
 "
@@ -467,7 +467,7 @@ export interface CompleteComment extends z.infer<typeof CommentModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedCommentModel: z.ZodSchema<CompleteComment> = z.lazy(() => CommentModel.extend({
+export const RelatedCommentModel: z.ZodType<CompleteComment> = z.lazy(() => CommentModel.extend({
   parent: RelatedCommentModel,
   children: RelatedCommentModel.array(),
 }))
@@ -501,7 +501,7 @@ export interface CompleteKeychain extends z.infer<typeof KeychainModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedKeychainModel: z.ZodSchema<CompleteKeychain> = z.lazy(() => KeychainModel.extend({
+export const RelatedKeychainModel: z.ZodType<CompleteKeychain> = z.lazy(() => KeychainModel.extend({
   owner: RelatedUserModel,
 }))
 "
@@ -528,7 +528,7 @@ export interface CompleteUser extends z.infer<typeof UserModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedUserModel: z.ZodSchema<CompleteUser> = z.lazy(() => UserModel.extend({
+export const RelatedUserModel: z.ZodType<CompleteUser> = z.lazy(() => UserModel.extend({
   keychain: RelatedKeychainModel.nullish(),
 }))
 "

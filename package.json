@@ -1,5 +1,5 @@
 {
-	"name": "nestjs-zod-prisma",
+	"name": "@hatkom/nestjs-zod-prisma",
 	"version": "0.0.0-set-by-ci",
 	"description": "A Prisma generator that creates Zod schemas for all of your models",
 	"license": "MIT",
@@ -40,10 +40,10 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@prisma/generator-helper": "^4.3.1",
+		"@prisma/generator-helper": "^6.18.0",
 		"parenthesis": "^3.1.8",
-		"ts-morph": "^13.0.2",
-		"zod": "^3.17.3"
+		"ts-morph": "^27.0.2",
+		"zod": "^4.1.12"
 	},
 	"devDependencies": {
 		"@eslint-kit/eslint-config-base": "^5.0.2",
@@ -51,22 +51,22 @@
 		"@eslint-kit/eslint-config-patch": "^1.0.0",
 		"@eslint-kit/eslint-config-prettier": "^5.0.0",
 		"@eslint-kit/eslint-config-typescript": "^5.2.0",
-		"@prisma/client": "^4.3.1",
+		"@prisma/client": "^6.18.0",
 		"@prisma/sdk": "^4.0.0",
-		"@tsconfig/recommended": "^1.0.1",
-		"@types/fs-extra": "^9.0.13",
-		"@typescript-eslint/parser": "^5.25.0",
-		"dts-cli": "^1.1.5",
-		"eslint": "7.32.0",
-		"execa": "^5.1.0",
-		"fast-glob": "^3.2.5",
-		"fs-extra": "^10.0.0",
-		"jest-mock-extended": "^2.0.4",
-		"nestjs-zod": "^1.1.0",
-		"prettier": "2.3.0",
-		"prisma": "^4.3.1",
-		"tslib": "^2.3.1",
-		"typescript": "^4.5.4"
+		"@tsconfig/recommended": "^1.0.10",
+		"@types/fs-extra": "^11.0.4",
+		"@typescript-eslint/parser": "^8.46.2",
+		"dts-cli": "^2.0.5",
+		"eslint": "9.38.0",
+		"execa": "^9.6.0",
+		"fast-glob": "^3.3.3",
+		"fs-extra": "^11.3.2",
+		"jest-mock-extended": "^4.0.0",
+		"nestjs-zod": "^5.0.1",
+		"prettier": "3.6.2",
+		"prisma": "^6.18.0",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.3"
 	},
 	"peerDependencies": {
 		"decimal.js": "^10.0.0",
