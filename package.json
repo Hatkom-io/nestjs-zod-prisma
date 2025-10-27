@@ -4,13 +4,13 @@
 	"description": "A Prisma generator that creates Zod schemas for all of your models",
 	"license": "MIT",
 	"author": "Evgeny Zakharov",
-	"homepage": "https://github.com/risenforces/nestjs-zod-prisma#readme",
+	"homepage": "https://github.com/Hatkom-io/nestjs-zod-prisma#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/risenforces/nestjs-zod-prisma.git"
+		"url": "https://github.com/Hatkom-io/nestjs-zod-prisma.git"
 	},
 	"bugs": {
-		"url": "https://github.com/risenforces/nestjs-zod-prisma/issues"
+		"url": "https://github.com/Hatkom-io/nestjs-zod-prisma/issues"
 	},
 	"main": "dist/index.js",
 	"module": "dist/nestjs-zod-prisma.esm.js",
