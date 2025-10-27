@@ -1,5 +1,5 @@
-import path from 'path'
 import { DMMF } from '@prisma/generator-helper'
+import path from 'path'
 import {
   ImportDeclarationStructure,
   SourceFile,
@@ -8,11 +8,11 @@ import {
 } from 'ts-morph'
 import { Config, PrismaOptions } from './config'
 import { getJSDocs } from './docs'
-import { getZodConstructor } from './types'
+import { getZodConstructor, Model } from './types'
 import { dotSlash, needsRelatedModel, useModelNames, writeArray } from './util'
 
 export const writeImportsForModel = (
-  model: DMMF.Model,
+  model: Model,
   sourceFile: SourceFile,
   config: Config,
   { schemaPath, outputPath }: PrismaOptions
@@ -23,7 +23,7 @@ export const writeImportsForModel = (
     {
       kind: StructureKind.ImportDeclaration,
       namespaceImport: 'z',
-      moduleSpecifier: 'nestjs-zod/z',
+      moduleSpecifier: 'zod',
     },
   ]
 
@@ -91,7 +91,7 @@ export const writeImportsForModel = (
 }
 
 export const writeTypeSpecificSchemas = (
-  model: DMMF.Model,
+  model: Model,
   sourceFile: SourceFile,
   config: Config,
   _prismaOptions: PrismaOptions
@@ -119,7 +119,7 @@ export const writeTypeSpecificSchemas = (
 }
 
 export const generateSchemaForModel = (
-  model: DMMF.Model,
+  model: Model,
   sourceFile: SourceFile,
   config: Config,
   _prismaOptions: PrismaOptions
@@ -155,7 +155,7 @@ export const generateSchemaForModel = (
 }
 
 export const generateDto = (
-  model: DMMF.Model,
+  model: Model,
   sourceFile: SourceFile,
   config: Config
 ) => {
@@ -170,7 +170,7 @@ export const generateDto = (
 }
 
 export const generateRelatedSchemaForModel = (
-  model: DMMF.Model,
+  model: Model,
   sourceFile: SourceFile,
   config: Config,
   _prismaOptions: PrismaOptions
@@ -238,7 +238,7 @@ export const generateRelatedSchemaForModel = (
 }
 
 export const populateModelFile = (
-  model: DMMF.Model,
+  model: Model,
   sourceFile: SourceFile,
   config: Config,
   prismaOptions: PrismaOptions
@@ -252,7 +252,7 @@ export const populateModelFile = (
 }
 
 export const generateBarrelFile = (
-  models: DMMF.Model[],
+  models: Model[],
   indexFile: SourceFile
 ) => {
   models.forEach((model) =>

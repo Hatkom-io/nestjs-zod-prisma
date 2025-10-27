@@ -7,8 +7,17 @@ import {
   generateBarrelFile,
   generateEnumsFile,
 } from './generator'
+import _ from 'lodash'
+
+type DeepMutable<T> =
+  T extends (...a: any) => any ? T
+  : T extends ReadonlyArray<infer U> ? Array<DeepMutable<U>>
+  : T extends object ? { -readonly [K in keyof T]: DeepMutable<T[K]> }
+  : T;
 
 const { version } = require('../package.json')
+
+const deepClone = <T extends object>(obj: T):DeepMutable<T> => structuredClone(obj) as DeepMutable<T>
 
 generatorHandler({
   onManifest() {
@@ -25,7 +34,7 @@ generatorHandler({
     const enums = options.dmmf.datamodel.enums
 
     const { schemaPath } = options
-    const outputPath = options.generator.output!.value
+    const outputPath = options.generator.output!.value!
     const clientPath = options.otherGenerators.find(
       (each) => each.provider.value === 'prisma-client-js'
     )!.output!.value!
@@ -49,7 +58,7 @@ generatorHandler({
       { overwrite: true }
     )
 
-    generateBarrelFile(models, indexFile)
+    generateBarrelFile(models.map(deepClone), indexFile)
 
     indexFile.formatText({
       indentSize: 2,
@@ -64,7 +73,7 @@ generatorHandler({
         { overwrite: true }
       )
 
-      populateModelFile(model, sourceFile, config, prismaOptions)
+      populateModelFile(deepClone(model), sourceFile, config, prismaOptions)
 
       sourceFile.formatText({
         indentSize: 2,
@@ -80,7 +89,7 @@ generatorHandler({
         { overwrite: true }
       )
 
-      generateEnumsFile(enums, enumsFile)
+      generateEnumsFile([...enums], enumsFile)
 
       enumsFile.formatText({
         indentSize: 2,

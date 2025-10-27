@@ -1,6 +1,7 @@
 import { DMMF } from '@prisma/generator-helper'
 import type { CodeBlockWriter } from 'ts-morph'
 import { Config } from './config'
+import { Model } from './types'
 
 export const writeArray = (
   writer: CodeBlockWriter,
@@ -46,7 +47,7 @@ export const useModelNames = ({
   }
 }
 
-export const needsRelatedModel = (model: DMMF.Model, config: Config) =>
+export const needsRelatedModel = (model: Model, config: Config) =>
   model.fields.some((field) => field.kind === 'object') &&
   config.relationModel !== false
 

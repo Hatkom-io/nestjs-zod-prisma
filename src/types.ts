@@ -1,5 +1,8 @@
 import type { DMMF } from '@prisma/generator-helper'
 import { findCustomSchema, findSchemaAppends } from './docs'
+import { getDMMF } from '@prisma/sdk'
+
+export type Model = Awaited<ReturnType<typeof getDMMF>>['datamodel']['models'][number]
 
 const mapScalarType: Record<string, string> = {
   String: 'z.string()',

@@ -29,12 +29,13 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "dts build --target node --format cjs --rollupTypes",
+		"cleanup:test": "find . -type d -name 'actual' -exec rm -rf {} +",
+		"build": "yarn run cleanup:test && dts build --target node --format cjs --rollupTypes",
 		"lint": "eslint --ext .ts,.tsx src",
 		"lint:fix": "yarn lint --fix",
 		"prepublish": "dts build --target node --format cjs --rollupTypes",
 		"start": "dts watch",
-		"test": "dts test --maxWorkers=4 --verbose"
+		"test": "yarn run cleanup:test && dts test --maxWorkers=4 --verbose"
 	},
 	"jest": {
 		"testEnvironment": "node"
@@ -69,9 +70,9 @@
 		"typescript": "^5.9.3"
 	},
 	"peerDependencies": {
-		"decimal.js": "^10.0.0",
-		"nestjs-zod": "^1.1.0",
-		"prisma": ">=4.0.0"
+		"decimal.js": "^10.6.0",
+		"nestjs-zod": "^5.0.1",
+		"prisma": ">=6.18.0"
 	},
 	"peerDependenciesMeta": {
 		"decimal.js": {
@@ -80,5 +81,6 @@
 	},
 	"engines": {
 		"node": ">=14"
-	}
+	},
+	"packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
