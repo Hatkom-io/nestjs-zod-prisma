@@ -15,17 +15,17 @@ jobs:
           fetch-depth: 0
 
       - name: Parse version from tag
-        id: version 
+        id: version
         uses: release-kit/semver@v1
 
       - name: Get branch name
         id: branch-name
         run: echo "::set-output name=value::${{ steps.version.outputs.prerelease != null && 'release/${{ steps.version.outputs.prerelease }}' || 'release/latest' }}"
-    
+
       - name: Check branch existence
         id: branch-exists
         run: echo "::set-output name=flag::$(git branch -a | egrep "remotes/origin/${{ steps.branch-name.outputs.value }}$" | wc -l)"
-    
+
     outputs:
       tag: ${{ github.event.release.tag_name }}
       prerelease: ${{ steps.version.outputs.prerelease }}
@@ -56,7 +56,7 @@ jobs:
 
       - name: Checkout branch
         if: ${{ needs.get-meta.outputs.branch-exists == 'true' }}
-        run: git checkout ${{ needs.get-meta.outputs.branch }} 
+        run: git checkout ${{ needs.get-meta.outputs.branch }}
 
       - name: Override branch using tag HEAD
         run: git reset --hard ${{ needs.get-meta.outputs.tag }}
@@ -72,7 +72,7 @@ jobs:
           tags: true
           force: true
           unprotect_reviews: true
-  
+
       - name: Push to unprotected branch
         env:
           TOKEN: ${{ secrets.FULL_ACCESS_GITHUB_TOKEN }}
@@ -90,7 +90,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 20
           registry-url: https://registry.npmjs.org/
 
       - name: Build package
