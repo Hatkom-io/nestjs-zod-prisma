@@ -30,12 +30,12 @@
 	],
 	"scripts": {
 		"cleanup:test": "find . -type d -name 'actual' -exec rm -rf {} +",
-		"build": "yarn run cleanup:test && dts build --target node --format cjs --rollupTypes",
+		"build": "dts build --target node --format cjs --rollupTypes",
 		"lint": "eslint --ext .ts,.tsx src",
 		"lint:fix": "yarn lint --fix",
 		"prepublish": "dts build --target node --format cjs --rollupTypes",
 		"start": "dts watch",
-		"test": "yarn run cleanup:test && dts test --maxWorkers=4 --verbose"
+		"test": "dts test --maxWorkers=4 --verbose"
 	},
 	"jest": {
 		"testEnvironment": "node"
