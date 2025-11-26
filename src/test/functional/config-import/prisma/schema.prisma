@@ -18,7 +18,7 @@ model Document {
   filename String  @unique
   author   String
   contents String
-  size     Decimal /// @z.from(imports.decimalSchema)
+  size     Decimal /// @z.preprocess((v) => v, imports.decimalSchema)
 
   created DateTime @default(now())
   updated DateTime @default(now())

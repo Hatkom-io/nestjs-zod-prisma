@@ -8,15 +8,7 @@ import {
   generateEnumsFile,
 } from './generator'
 
-type DeepMutable<T> =
-  T extends (...a: any) => any ? T
-  : T extends ReadonlyArray<infer U> ? Array<DeepMutable<U>>
-  : T extends object ? { -readonly [K in keyof T]: DeepMutable<T[K]> }
-  : T;
-
 const { version } = require('../package.json')
-
-const deepClone = <T extends object>(obj: T):DeepMutable<T> => structuredClone(obj) as DeepMutable<T>
 
 generatorHandler({
   onManifest() {
@@ -65,7 +57,7 @@ generatorHandler({
       { overwrite: true }
     )
 
-    generateBarrelFile(models.map(deepClone), indexFile)
+    generateBarrelFile([...models], indexFile)
 
     indexFile.formatText({
       indentSize: 2,
@@ -80,7 +72,7 @@ generatorHandler({
         { overwrite: true }
       )
 
-      populateModelFile(deepClone(model), sourceFile, config, prismaOptions)
+      populateModelFile(model, sourceFile, config, prismaOptions)
 
       sourceFile.formatText({
         indentSize: 2,

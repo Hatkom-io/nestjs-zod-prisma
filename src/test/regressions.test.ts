@@ -1,5 +1,5 @@
 import path from 'path'
-import { getDMMF } from '@prisma/sdk'
+import { getDMMF } from '@prisma/internals'
 import { Project } from 'ts-morph'
 import { configSchema, PrismaOptions } from '../config'
 import { writeImportsForModel } from '../generator'

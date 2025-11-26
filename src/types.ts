@@ -1,6 +1,6 @@
 import type { DMMF } from '@prisma/generator-helper'
 import { findCustomSchema, findSchemaAppends } from './docs'
-import { getDMMF } from '@prisma/sdk'
+import { getDMMF } from '@prisma/internals'
 
 export type Model = Awaited<ReturnType<typeof getDMMF>>['datamodel']['models'][number]
 

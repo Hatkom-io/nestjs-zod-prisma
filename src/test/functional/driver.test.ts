@@ -1,5 +1,5 @@
 import path from 'path'
-import { getDMMF, getConfig } from '@prisma/sdk'
+import { getDMMF, getConfig } from '@prisma/internals'
 import { readFile } from 'fs-extra'
 import { Project } from 'ts-morph'
 import { SemicolonPreference } from 'typescript'
@@ -34,16 +34,16 @@ const ftForDir = (dir: string) => async () => {
   const config = configSchema.parse(generator.config)
 
   const prismaClient = generators.find(
-    (generator) => generator.provider.value === 'prisma-client-js'
+    (generator) => generator.provider.value === 'prisma-client'
   )!
 
   const outputPath = path.resolve(
     path.dirname(schemaFile),
-    generator.output!.value
+    generator.output!.value!
   )
   const clientPath = path.resolve(
     path.dirname(schemaFile),
-    prismaClient.output!.value
+    prismaClient.output!.value!
   )
 
   const prismaOptions: PrismaOptions = {
@@ -58,7 +58,7 @@ const ftForDir = (dir: string) => async () => {
     { overwrite: true }
   )
 
-  generateBarrelFile(dmmf.datamodel.models, indexFile)
+  generateBarrelFile([...dmmf.datamodel.models], indexFile)
 
   indexFile.formatText({
     indentSize: 2,
@@ -79,7 +79,7 @@ const ftForDir = (dir: string) => async () => {
       { overwrite: true }
     )
 
-    generateEnumsFile(dmmf.datamodel.enums, enumsFile)
+    generateEnumsFile([...dmmf.datamodel.enums], enumsFile)
 
     enumsFile.formatText({
       indentSize: 2,

@@ -163,7 +163,6 @@ For PostgreSQL, the connection URL has the following structure:
 ```prisma
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
 }
 ```
 
@@ -172,7 +171,6 @@ Here is an example connection string with a local PostgreSQL database:
 ```prisma
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://janedoe:mypassword@localhost:5432/notesapi?schema=public"
 }
 ```
 
@@ -183,7 +181,6 @@ For MySQL, the connection URL has the following structure:
 ```prisma
 datasource db {
   provider = "mysql"
-  url      = "mysql://USER:PASSWORD@HOST:PORT/DATABASE"
 }
 ```
 
@@ -192,7 +189,6 @@ Here is an example connection string with a local MySQL database:
 ```prisma
 datasource db {
   provider = "mysql"
-  url      = "mysql://janedoe:mypassword@localhost:3306/notesapi"
 }
 ```
 
@@ -203,7 +199,6 @@ Here is an example connection string with a local Microsoft SQL Server database:
 ```prisma
 datasource db {
   provider = "sqlserver"
-  url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
 }
 ```
 
