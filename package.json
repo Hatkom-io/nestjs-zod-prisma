@@ -35,7 +35,8 @@
 		"lint:fix": "yarn lint --fix",
 		"prepublish": "dts build --target node --format cjs --rollupTypes",
 		"start": "dts watch",
-		"test": "dts test --maxWorkers=4 --verbose"
+		"test": "dts test --maxWorkers=4 --verbose",
+		"preinstall": "npm run cleanup:test"
 	},
 	"jest": {
 		"testEnvironment": "node"
