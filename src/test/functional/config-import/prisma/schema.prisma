@@ -1,10 +1,9 @@
 datasource db {
   provider = "postgresql"
-  url      = ""
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
   output   = ".client"
 }
 
@@ -19,7 +18,7 @@ model Document {
   filename String  @unique
   author   String
   contents String
-  size     Decimal /// @z.from(imports.decimalSchema)
+  size     Decimal /// @z.preprocess((v) => v, imports.decimalSchema)
 
   created DateTime @default(now())
   updated DateTime @default(now())

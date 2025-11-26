@@ -1,10 +1,9 @@
 datasource db {
   provider = "postgresql"
-  url      = ""
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
   output   = ".client"
 }
 
@@ -15,8 +14,8 @@ generator zod {
 }
 
 model Document {
-  id       String  @id @default(cuid())
-  filename String  @unique
+  id       String @id @default(cuid())
+  filename String @unique
   author   String
   contents String
 
