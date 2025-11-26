@@ -1,4 +1,4 @@
-import { generatorHandler } from '@prisma/generator-helper'
+import { generatorHandler, GeneratorOptions } from '@prisma/generator-helper'
 import { Project } from 'ts-morph'
 import { SemicolonPreference } from 'typescript'
 import { configSchema, PrismaOptions } from './config'
@@ -26,17 +26,25 @@ generatorHandler({
       defaultOutput: './src/zod',
     }
   },
-  onGenerate(options) {
+  onGenerate(options: GeneratorOptions) {
     const project = new Project()
 
     const models = options.dmmf.datamodel.models
     const enums = options.dmmf.datamodel.enums
 
     const { schemaPath } = options
-    const outputPath = options.generator.output!.value!
+    const outputPath = options.generator.output?.value
     const clientPath = options.otherGenerators.find(
-      (each) => each.provider.value === 'prisma-client-js'
-    )!.output!.value!
+      (each) => each.provider.value === 'prisma-client'
+    )?.output?.value
+
+    if (!outputPath) {
+      throw new Error("Incorrect config provided. No output path for db generator")
+    }
+
+    if (!clientPath) {
+      throw new Error("Incorrect config provided. No output path for client generator")
+    }
 
     const results = configSchema.safeParse(options.generator.config)
     if (!results.success)
