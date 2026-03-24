@@ -91,9 +91,9 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24.10.0
           registry-url: https://registry.npmjs.org/
 
       - name: Build package
